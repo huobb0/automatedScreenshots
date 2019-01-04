@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 
 @interface AppDelegate ()
-
+@property (weak, nonatomic) IBOutlet UIImageView *BackgroundImage;
 @end
 
 @implementation AppDelegate
@@ -17,6 +17,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    _BackgroundImage.hidden = YES;
     return YES;
 }
 
@@ -24,6 +25,25 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
+    NSLog(@"resign invoked");
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:[self.window frame]];
+    imageView.tag = 1234;
+    [imageView setImage:[UIImage imageNamed:@"smiley.png"]];
+    [self.window addSubview:imageView];
+    
+    // fill screen with our own colour
+    /*UIView *colourView = [[UIView alloc]initWithFrame:self.window.frame];
+    colourView.backgroundColor = [UIColor whiteColor];
+    colourView.tag = 1234;
+    colourView.alpha = 0;
+    [self.window addSubview:colourView];
+    [self.window bringSubviewToFront:colourView];
+    
+    // fade in the view
+    [UIView animateWithDuration:0.5 animations:^{
+        colourView.alpha = 1;
+    }];*/
+    
 }
 
 
@@ -40,6 +60,17 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    // grab a reference to our coloured view
+    UIView *colourView = [self.window viewWithTag:1234];
+    
+    // fade away colour view from main view
+    [UIView animateWithDuration:0.5 animations:^{
+        colourView.alpha = 0;
+    } completion:^(BOOL finished) {
+        // remove when finished fading
+        [colourView removeFromSuperview];
+    }];
+
 }
 
 
