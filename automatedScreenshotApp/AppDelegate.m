@@ -33,16 +33,16 @@
     
     // fill screen with our own colour
     /*UIView *colourView = [[UIView alloc]initWithFrame:self.window.frame];
-    colourView.backgroundColor = [UIColor whiteColor];
-    colourView.tag = 1234;
-    colourView.alpha = 0;
-    [self.window addSubview:colourView];
-    [self.window bringSubviewToFront:colourView];
-    
-    // fade in the view
-    [UIView animateWithDuration:0.5 animations:^{
-        colourView.alpha = 1;
-    }];*/
+     colourView.backgroundColor = [UIColor whiteColor];
+     colourView.tag = 1234;
+     colourView.alpha = 0;
+     [self.window addSubview:colourView];
+     [self.window bringSubviewToFront:colourView];
+     
+     // fade in the view
+     [UIView animateWithDuration:0.5 animations:^{
+     colourView.alpha = 1;
+     }];*/
     
 }
 
